@@ -1,4 +1,5 @@
 import { handlerLogin, handlerRegisterUser, handlerReset, handlerUsers } from "./commands/users";
+import { handlerAgg } from "./commands/utils";
 
 export type CommandHandler = (
     cmdName: string,
@@ -36,6 +37,7 @@ export function createCommandsRegistry(): CommandsRegistry {
     registerCommand(registry, "register", handlerRegisterUser);
     registerCommand(registry, "reset", handlerReset);
     registerCommand(registry, "users", handlerUsers);
+    registerCommand(registry, "agg", handlerAgg);
 
     return registry;
 }
