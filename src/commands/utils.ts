@@ -10,3 +10,7 @@ export async function handlerAgg(
 
     console.log(JSON.stringify(feed, null, 1));
 }
+
+export async function handlerFeeds(name: string, url: string) {
+    
+}

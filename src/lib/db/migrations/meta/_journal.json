@@ -8,6 +8,13 @@
       "when": 1786485847667,
       "tag": "0000_steady_the_phantom",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1787707603747,
+      "tag": "0001_curly_sheva_callister",
+      "breakpoints": true
     }
   ]
 }
