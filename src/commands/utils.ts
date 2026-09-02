@@ -1,4 +1,5 @@
 import { fetchFeed } from "../lib/rss";
+import { feeds, users } from "../lib/db/schemas/schema";
 
 export async function handlerAgg(
     cmdName: string,
@@ -11,6 +12,13 @@ export async function handlerAgg(
     console.log(JSON.stringify(feed, null, 1));
 }
 
-export async function handlerFeeds(name: string, url: string) {
-    
+export type Feed = typeof feeds.$inferSelect;
+export type User = typeof users.$inferSelect;
+
+export function printFeed(feed: Feed, user: User): void {
+    console.log("Feed:");
+    console.log(`  ID: ${feed.id}`);
+    console.log(`  Name: ${feed.name}`);
+    console.log(`  URL: ${feed.url}`);
+    console.log(`  User: ${user.name}`);
 }
