@@ -1,4 +1,4 @@
-import { handlerAddFeed, handlerFeeds, handlerFollow } from "./commands/feeds";
+import { handlerAddFeed, handlerFeeds, handlerFollow, handlerFollowing } from "./commands/feeds";
 import { handlerLogin, handlerRegisterUser, handlerReset, handlerUsers } from "./commands/users";
 import { handlerAgg } from "./commands/utils";
 
@@ -42,6 +42,7 @@ export function createCommandsRegistry(): CommandsRegistry {
     registerCommand(registry, "addfeed", handlerAddFeed);
     registerCommand(registry, "feeds", handlerFeeds);
     registerCommand(registry, "follow", handlerFollow);
+    registerCommand(registry, "following", handlerFollowing);
 
 
     return registry;

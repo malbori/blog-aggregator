@@ -1,6 +1,6 @@
 import { readConfig } from "../config";
 import { getUser } from "../lib/db/queries/users";
-import { createFeed, getFeeds, getFeedByURL, createFeedFollow } from "../lib/db/queries/feeds";
+import { createFeed, getFeeds, getFeedByURL, createFeedFollow, getFeedFollowsForUser } from "../lib/db/queries/feeds";
 import { printFeed } from "./utils";
 
 export async function handlerAddFeed(
@@ -27,6 +27,11 @@ export async function handlerAddFeed(
         feedURL,
         user.id,
     );
+
+    const follow = await createFeedFollow(user.id, feed.id);
+
+    console.log(`Feed: ${follow.feedName}`);
+    console.log(`User: ${follow.userName}`);
 
     printFeed(feed, user);
 }
@@ -71,4 +76,23 @@ export async function handlerFollow(
 
     console.log(`Feed: ${follow.feedName}`);
     console.log(`User: ${follow.userName}`);
+}
+
+export async function handlerFollowing(
+    cmdName: string,
+    ...args: string[]
+): Promise<void> {
+    const config = readConfig();
+
+    const user = await getUser(config.currentUserName);
+
+    if (!user) {
+        throw new Error("Current user not found");
+    }
+
+    const follows = await getFeedFollowsForUser(user.id);
+
+    for (const follow of follows) {
+        console.log(follow.feedName);
+    }
 }
